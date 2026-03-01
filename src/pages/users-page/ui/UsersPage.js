@@ -3,7 +3,7 @@ import SearchFilter from '../../widgets/SearchFilter/SearchFilter';
 import UsersTable from '../../widgets/UsersTable/UsersTable';
 import Pagination from '../../widgets/Pagination/Pagination';
 import UserModal from '../../widgets/UserModal/UserModal';
-import { fetchUsers } from '../../features/users/api';
+import { fetchUsers } from '../../../features/users/api';
 
 export const UsersPage = () => {
   const [users, setUsers] = useState([]);
