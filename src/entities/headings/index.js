@@ -1,0 +1,1 @@
+export { activeHeadings } from './activeHeadings';

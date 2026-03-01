@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import SearchFilter from '../../widgets/SearchFilter/SearchFilter';
-import UsersTable from '../../widgets/UsersTable/UsersTable';
-import Pagination from '../../widgets/Pagination/Pagination';
-import UserModal from '../../widgets/UserModal/UserModal';
-import { fetchUsers } from '../../../features/users/api';
+import SearchFilter from '../../../widgets/ui/seach-filter';
+import UsersTable from '../../../widgets/ui/table';
+import Pagination from '../../../widgets/ui/pagination';
+import UserModal from '../../../widgets/ui/modal';
+import { fetchUsers } from '../../../features/users/';
 
 export const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -76,8 +76,8 @@ export const UsersPage = () => {
       <Pagination 
         total={total} 
         currentPage={currentPage} 
-        onPageChange={handlePageChange} 
-        itemsPerPage={usersPerPage}
+        onPageChange={handlePageChange}
+        usersPerPage={usersPerPage}
       />
 
       {isModalOpen && (
