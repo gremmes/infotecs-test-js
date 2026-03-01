@@ -1,7 +1,7 @@
-import './styles';
-import React from 'react';
-import Table from './components/Table';
+import "./styles";
+import React from "react";
+import UsersPage from "@/UsersPage";
 
-const App = () => <Table />;
+const App = () => <UsersPage />;
 
 export default App;
