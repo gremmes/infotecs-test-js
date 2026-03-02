@@ -1,1 +1,1 @@
-export { activeHeadings } from './activeHeadings';
+export { activeHeadings } from './constants/activeHeadings';

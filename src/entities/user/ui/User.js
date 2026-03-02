@@ -1,7 +1,7 @@
 import React from 'react';
 
-const User = ({ user, toggle }) => (
-  <tr onClick={() => toggle(user)}>
+export const User = ({ user, onClick }) => (
+  <tr onClick={() => onClick(user)}>
     <td>{user.lastName}</td>
     <td>{user.firstName}</td>
     <td>{user.maidenName}</td>
@@ -13,5 +13,3 @@ const User = ({ user, toggle }) => (
     <td>{user.address.city}</td>
   </tr>
 );
-
-export default User;

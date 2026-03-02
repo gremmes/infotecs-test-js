@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import './Pagination.css';
 
-const Pagination = ({ total, currentPage, onPageChange, itemsPerPage }) => {
+export const Pagination = ({ total, currentPage, onPageChange, itemsPerPage }) => {
   const maxNumPages = Math.ceil(total / itemsPerPage);
   const [pages, setPages] = useState([]);
 
@@ -43,24 +44,18 @@ const Pagination = ({ total, currentPage, onPageChange, itemsPerPage }) => {
   };
 
   return (
-    <footer style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
-      <button onClick={handleFirst} disabled={currentPage === 1}>В НАЧАЛО</button>
+    <footer className="pagination-container">
+      <button className="pagination-button" onClick={handleFirst} disabled={currentPage === 1}>В НАЧАЛО</button>
       {pages.map((page) => (
         <button
           key={page}
           onClick={() => handlePageClick(page)}
-          style={{
-            fontWeight: page === currentPage ? 'bold' : 'normal',
-            backgroundColor: page === currentPage ? '#ccc' : undefined,
-          }}
+          className={`pagination-button ${page === currentPage ? 'active' : ''}`}
         >
           {page}
         </button>
       ))}
-      <button onClick={handleLast} disabled={currentPage === Math.ceil(total / itemsPerPage)}>В КОНЕЦ</button>
+      <button className="pagination-button" onClick={handleLast} disabled={currentPage === Math.ceil(total / itemsPerPage)}>В КОНЕЦ</button>
     </footer>
   );
-};
-
-export default Pagination;
-      
+};    

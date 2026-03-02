@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { searchQueryParams } from '../../../entities/seach-params';
+import { activeHeadings } from '../../../entities/headings';
 
-const SearchFilter = ({ onFilterChange }) => {
+export const SearchFilter = ({ onFilterChange }) => {
   const [category, setCategory] = useState('');
   const [searchText, setSearchText] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onFilterChange({ category, searchText });
   };
 
   return (
-    <div>
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
-      {searchQueryParams.map(heading => (
+    <form onSubmit={handleSubmit}>
+      <select name="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+      <option value="">-выберите параметр поиска-</option>
+      {activeHeadings.map(heading => (
           <option value={heading.key} key={heading.key}>{heading.value}</option>
-      ))}
+        ))}
       </select>
       <input
         type="text"
@@ -22,6 +24,6 @@ const SearchFilter = ({ onFilterChange }) => {
         onChange={(e) => setSearchText(e.target.value)}
       />
       <button onClick={handleSubmit}>Поиск</button>
-    </div>
+    </form>
   );
 };

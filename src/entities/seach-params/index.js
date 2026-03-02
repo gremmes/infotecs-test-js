@@ -1,1 +1,1 @@
-export { searchQueryParams } from './searchParams';
+export { searchParams } from './constants/searchParams';

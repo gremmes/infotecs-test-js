@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import SearchFilter from '../../../widgets/ui/seach-filter';
-import UsersTable from '../../../widgets/ui/table';
-import Pagination from '../../../widgets/ui/pagination';
-import UserModal from '../../../widgets/ui/modal';
-import { fetchUsers } from '../../../features/users/';
+import { SearchFilter } from '../../../widgets/search-filter';
+import { UsersTable } from '../../../widgets/table';
+import { Pagination } from '../../../widgets/pagination';
+import { UserModal } from '../../../widgets/modal';
+import { fetchUsers } from '../../../features/users';
 
 export const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -22,7 +22,7 @@ export const UsersPage = () => {
         setUsers(data.users);
         setTotal(data.total);
       } catch (err) {
-        console.error('Ошибка загрузки:', err); // выводить более красиво ошибку?
+        console.error('Ошибка загрузки:', err);
       }
     };
 
@@ -30,7 +30,11 @@ export const UsersPage = () => {
   }, [currentPage, filter, sort]);
 
   const handleFilterChange = (newFilter) => {
-    setFilter(newFilter);
+    const filter = {
+      category: newFilter.category === '' ? null : newFilter.category,
+      searchText: newFilter.searchText === '' ? null : newFilter.searchText,
+    };
+    setFilter(filter);
     setCurrentPage(1);
   };
 
@@ -53,7 +57,7 @@ export const UsersPage = () => {
   };
 
   const handleUserClick = (user) => {
-    setModalUser(user);
+    setModalUser(user.id);
     setModalOpen(true);
   };
 
@@ -66,23 +70,26 @@ export const UsersPage = () => {
     <>
       <h1>Table with user data</h1>
       <SearchFilter onFilterChange={handleFilterChange} />
-      
+
       <UsersTable 
         users={users} 
-        onSort={handleSort} 
-        onUserClick={handleUserClick} 
+        onSort={handleSort}
+        sortRules={sort} 
+        onUserClick={handleUserClick}
       />
       
       <Pagination 
         total={total} 
         currentPage={currentPage} 
         onPageChange={handlePageChange}
-        usersPerPage={usersPerPage}
+        itemsPerPage={usersPerPage}
       />
 
-      {isModalOpen && (
-        <UserModal user={modalUser} onClose={closeModal} />
-      )}
+      <UserModal
+        isOpen={isModalOpen}
+        userId={modalUser}
+        onClose={closeModal}
+      />
     </>
   );
 };

@@ -1,6 +1,6 @@
-import "./styles";
-import React from "react";
-import UsersPage from "@/UsersPage";
+import './styles/App.css';
+import React from 'react';
+import { UsersPage } from '../pages/users-page';
 
 const App = () => <UsersPage />;
 
