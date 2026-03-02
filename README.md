@@ -19,4 +19,4 @@
 - Реализована обработка возможных ошибок при работе с HTTP-запросами
 
 ## Демо
-[Открыть демо на GitHub Pages]
+[Открыть демо на GitHub Pages](https://gremmes.github.io/infotecs-test-js/)
